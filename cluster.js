@@ -19,9 +19,11 @@ if (cluster.isMaster) {
      var port = 3000;
      stats[cluster.worker.process.pid] = 0;
      console.log('worker (%s) is now listening to http://localhost:%s',
-cluster.worker.process.pid, port);
-var app = express();
-app.get('*', (req,res) => {
+     cluster.worker.process.pid, port);
+
+     var app = express();
+     
+     app.get('*', (req,res) => {
      stats[cluster.worker.process.pid] += 1;
      var l ='cluster '
           + cluster.worker.process.pid
